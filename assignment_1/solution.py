@@ -4,6 +4,8 @@
 # should return the length of the string and a method to convert
 # string to list of characters. This method will take an
 # argument as string to convert.
+from collections import Counter
+
 
 class StringClass:
 
@@ -41,3 +43,22 @@ class PairsPossible(StringClass):
 
 pairPossible = PairsPossible("hello")
 print("all possible pairs are :- ", pairPossible.pairs())
+
+# Problem 3
+# Create a class SearchCommonElements which should take up a string.
+# Your task is to create a method to find common elements from string
+# taken in StringClass and string taken in PairsPossible class and
+# return the answer in list. Note- Please use dictionary logic to
+# find common elements.
+class SearchCommonElements(StringClass):
+
+    def commonElements(self):
+        d = dict(Counter(list(self.string)))
+        res = []
+        for j in d:
+            if d[j] >= 2:
+                res.append(j)
+        return res
+
+searchCommonElements = SearchCommonElements("asdfdsasdsasd")
+print("Common elements are :- ", searchCommonElements.commonElements())
