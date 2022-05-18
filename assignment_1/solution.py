@@ -18,6 +18,7 @@ class StringClass:
     def str2listConverter(self, inputStr):
         return [char for char in inputStr]
 
+
 stringClass = StringClass("hello")
 print("length of the string :- ", stringClass.lengthOfString())
 print("String converted to list : - ", stringClass.str2listConverter("HashedIn"))
@@ -33,16 +34,19 @@ class PairsPossible(StringClass):
     def pairs(self):
         list = []
 
-        list1 = StringClass.str2listConverter(self,self.string)
-        for i in range(0,len(list1)):
+        list1 = StringClass.str2listConverter(self, self.string)
+        for i in range(0, len(list1)):
             temp = ""
-            for j in range(i+1,len(list1)):
-                temp = list1[i]+list1[j]
+            for j in range(i + 1, len(list1)):
+                temp = list1[i] + list1[j]
                 list.append(temp)
         return list
 
+
 pairPossible = PairsPossible("hello")
-print("all possible pairs are :- ", pairPossible.pairs())
+pairPossibleList = pairPossible.pairs()
+print("all possible pairs are :- ", pairPossibleList)
+
 
 # Problem 3
 # Create a class SearchCommonElements which should take up a string.
@@ -60,5 +64,28 @@ class SearchCommonElements(StringClass):
                 res.append(j)
         return res
 
+
 searchCommonElements = SearchCommonElements("asdfdsasdsasd")
 print("Common elements are :- ", searchCommonElements.commonElements())
+
+# Problem 4
+# Create a class EqualSumPairs to get the count of total number of pairs
+# formed in class PairsPossible which has sum which is not equal to
+# sum of other pairs. Print the output for SearchCommonElements and EqualSumPairs classes.
+
+class EqualSumPairs:
+
+    def equalSumPairsCount(self, list1):
+        list2 = []
+        for i in list1:
+            res = 0
+            for j in i:
+                res += int(j)
+            list2.append(res)
+        return len(set(list2))
+
+
+equalPairCountObj = EqualSumPairs()
+length = equalPairCountObj.equalSumPairsCount(pairPossibleList)
+print("Count of unique sums: ")
+print(length)
