@@ -65,6 +65,52 @@ def create_map_ascending(key, value):
 
     print(dict)
 
+
 # keys = ['Ten', 'Twenty', 'Thirty']
 # value = [10, 20, 30]
 # create_map_ascending(keys, value)
+
+
+# question 5
+# Merge following two Python dictionaries into one
+
+def merge_map(dict1, dict2):
+    dict3 = dict1.copy()
+
+    for key, value in dict2.items():
+        dict3[key] = value
+    print(dict3)
+
+
+# given_dict1 = {'Ten': 10, 'Twenty': 20, 'Thirty': 30}
+# given_dict2 = {'Thirty': 30, 'Forty': 40, 'Fifty': 50}
+# merge_map(given_dict1, given_dict2)
+
+# question 6
+# Rename key city to location in the following dictionary
+def rename_key(dict, oldKey, newKey):
+    dict[newKey] = dict.pop(oldKey)
+    print(dict)
+
+
+# sampleDict = {
+#   "name": "Kelly",
+#   "age": 25,
+#   "salary": 8000,
+#   "city": "New york"
+# }
+
+# oldKey = "city"
+# newKey = "location"
+# rename_key(sampleDict, oldKey, newKey)
+
+# question 7
+# Convert Dictionary to list
+# The original dictionary is : {‘HuEx: [1, 3, 4], ‘is’: [7, 6], ‘best’: [4, 5]}
+# The converted list is : [[‘HuEx, 1, 3, 4], [‘is’, 7, 6], [‘best’, 4, 5]]
+def dict_to_list(input_dict):
+    new_dict = list(input_dict.items())
+    print(new_dict)
+
+# given_dict = {'HuEx': [1, 3, 4], 'is': [7, 6], 'best': [4, 5]}
+# dict_to_list(given_dict)
