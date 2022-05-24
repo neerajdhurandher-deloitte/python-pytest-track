@@ -1,9 +1,9 @@
-from mainAssignment.customeExceptions.invalidCredential import InvalidCredential
-from mainAssignment.utils import movie, user
-from mainAssignment.pages import homePage
-from mainAssignment.utils.db import DB
-from mainAssignment.customeExceptions.invalidInput import InputCheck
-
+from main_assignment.customExceptions.invalidCredential import InvalidCredential
+from main_assignment.utils import movie, user
+from main_assignment.pages import homePage
+from main_assignment.utils.db import DB
+from main_assignment.customExceptions.invalidInput import InputCheck
+from main_assignment.utils.validations import emailvalidation, phonenumbervalidation, passwordvalidation
 
 def welcome_page():
     print("Welcome")
@@ -15,8 +15,7 @@ def welcome_page():
     return choice
 
 
-
-class UserPage(InvalidCredential, DB ,InputCheck):
+class UserPage(InvalidCredential, DB, InputCheck):
 
     def __init__(self):
         pass
@@ -38,23 +37,44 @@ class UserPage(InvalidCredential, DB ,InputCheck):
         return
 
     def register_user(self):
+        email = ""
+        emailBool = False
+        phone = ""
+        phoneBool = False
+        password = ""
+        passwordBool = False
+
         print("****Create new Account***** ")
-        username = input("Enter your username :- ")
+        while True:
+            username = input("Enter your username :- ")
+            if username == "E":
+                welcome_page()
+            if DB.user_dic.get(username) is None:
+                break
+            else:
+                print("username already exits. Try another username.")
+                print("For previous menu enter `E` ")
         name = input("Enter your name :- ")
-        email = input("Enter your email :- ")
-        phone = input("Enter your phone number :- ")
+
+        while not emailBool:
+            email = input("Enter your email :- ")
+            emailBool = emailvalidation(email)
+
+        while not phoneBool:
+            phone = input("Enter your phone number :- ")
+            phoneBool = phonenumbervalidation(phone)
+
         age = InputCheck.int_input_check("Enter your age :- ")
-        password = input("Enter your password :- ")
+        while not passwordBool:
+            password = input("Enter your password :- ")
+            passwordBool = passwordvalidation(password)
 
         new_user = user.User(username, name, email, phone, age, password)
 
-        if DB.user_dic.get(username) is None:
-            DB.user_dic[username] = new_user
-            DB.user_list.append(DB.user_dic)
-            print("User created")
-            DB.print_users_list(self)
-        else:
-            print("user already exits")
+        DB.user_dic[username] = new_user
+        DB.user_list.append(DB.user_dic)
+        print("User created")
+        DB.print_users_list(self,new_user)
 
     def user_login(self):
         print("****** Welcome to Book MyShow ******* ")
@@ -88,7 +108,7 @@ class UserPage(InvalidCredential, DB ,InputCheck):
 
     def sel_movie_actions(self, choice):
         # shows movies details
-        get_movie_index = choice-1
+        get_movie_index = choice - 1
         DB.show_movie_details(self, get_movie_index)
         self.action_on_movie(get_movie_index)
 
@@ -123,9 +143,9 @@ class UserPage(InvalidCredential, DB ,InputCheck):
             print(str(index), " ", time)
 
         sel_timing = InputCheck.int_input_check("Select timing :- ")
-        print("Timing ", get_movie.timings[sel_timing-1])
+        print("Timing ", get_movie.timings[sel_timing - 1])
         available_ticket = get_movie.available_seat
-        print("Remaining seats :- " , available_ticket)
+        print("Remaining seats :- ", available_ticket)
         ticket_count = InputCheck.int_input_check("Enter number of seats :- ")
 
         if ticket_count > available_ticket:
@@ -162,7 +182,3 @@ class UserPage(InvalidCredential, DB ,InputCheck):
             get_movie.user_rating = rating
             print("Thankyou for rating ", get_movie.title)
             self.after_login()
-
-
-
-

@@ -1,9 +1,9 @@
-from mainAssignment.pages.adminPage import Admin
-from mainAssignment.pages.userPage import UserPage
-from mainAssignment.customeExceptions.invalidInput import InputCheck
-from mainAssignment.utils.db import DB
-from mainAssignment.utils.movie import Movie
-from mainAssignment.utils.user import User
+from main_assignment.pages.adminPage import Admin
+from main_assignment.pages.userPage import UserPage
+from main_assignment.customExceptions.invalidInput import InputCheck
+from main_assignment.utils.db import DB
+from main_assignment.utils.movie import Movie
+from main_assignment.utils.user import User
 
 
 class landingPage(InputCheck):

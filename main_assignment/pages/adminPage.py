@@ -1,10 +1,10 @@
 import random
 
-from mainAssignment.customeExceptions.invalidCredential import InvalidCredential
-from mainAssignment.customeExceptions.invalidInput import InputCheck
-from mainAssignment.utils import movie
+from main_assignment.customExceptions.invalidCredential import InvalidCredential
+from main_assignment.customExceptions.invalidInput import InputCheck
+from main_assignment.utils import movie
 
-from mainAssignment.utils.db import DB
+from main_assignment.utils.db import DB
 
 def str_val(val):
     if val < 10:
