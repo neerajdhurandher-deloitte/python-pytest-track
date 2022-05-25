@@ -47,13 +47,12 @@ class UserPage(InvalidCredential, DB, InputCheck):
         print("****Create new Account***** ")
         while True:
             username = input("Enter your username :- ")
-            if username == "E":
-                welcome_page()
+
             if DB.user_dic.get(username) is None:
                 break
             else:
                 print("username already exits. Try another username.")
-                print("For previous menu enter `E` ")
+
         name = input("Enter your name :- ")
 
         while not emailBool:
@@ -74,7 +73,7 @@ class UserPage(InvalidCredential, DB, InputCheck):
         DB.user_dic[username] = new_user
         DB.user_list.append(DB.user_dic)
         print("User created")
-        DB.print_users_list(self,new_user)
+        DB.print_users_details(self, new_user)
 
     def user_login(self):
         print("****** Welcome to Book MyShow ******* ")

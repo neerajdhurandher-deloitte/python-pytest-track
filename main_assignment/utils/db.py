@@ -12,12 +12,12 @@ class DB:
     def print_movie_list(self):
         print(self.movie_dict)
 
-    def print_users_list(self, user):
-        print(user.username)
-        print(user.name)
-        print(user.phone)
-        print(user.email)
-        print(user.age)
+    def print_users_details(self, user):
+        print("Username :- " + user.username)
+        print("Name :- " + user.name)
+        print("Phone number :- " + user.phone)
+        print("Email Id :- " + user.email)
+        print(f"Age :- {user.age}")
 
     def show_movies_name(self):
         index = 1
